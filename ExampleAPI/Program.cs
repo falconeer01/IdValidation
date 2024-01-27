@@ -6,20 +6,6 @@ using TurkeyServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-using (KPSPublicSoapClient soapClient = new(endpointConfiguration: KPSPublicSoapClient.EndpointConfiguration.KPSPublicSoap12))
-{
-    var result = await soapClient.TCKimlikNoDogrulaAsync(47917452706, "Ömer Can", "Demirel", 2000);
-
-    if (result.Body.TCKimlikNoDogrulaResult)
-    {
-        Console.WriteLine("Kimlik bilgileri doğru.");
-    }
-    else
-    {
-        throw new Exception("Kimlik bilgileri hatalı.");
-    }
-};
-
 // Add services to the container.
 builder.Services.AddDbContext<ExampleDbContext>();
 builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
